@@ -35,8 +35,6 @@ class Solution(object):
             return -1
         if amount == 0:
             return 0
-        if amount in coins:
-            return 1
         relt = float("inf")
         for c in coins:
             pre_relt = self.coinChange(coins, amount - c)
@@ -69,7 +67,7 @@ class Solution2(object):
 
 
 if __name__ == '__main__':
-    solution = Solution2()
+    solution = Solution()
     print(solution.coinChange([1, 2, 5], 11))
     print(solution.coinChange([2], 3))
     print(solution.coinChange([1], 0))
