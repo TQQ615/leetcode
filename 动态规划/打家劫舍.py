@@ -121,28 +121,27 @@ class Solution3(object):
         :type root: TreeNode
         :rtype: int
         """
-        # TODO 此方法不work badcase: root = [3,2,3,null,3,null,1]
-        # if root is None:
-        #     return 0
-        # # 不抢
-        # dp0 = self.rob(root.left) + self.rob(root.right)
-        # # 抢
-        # dp1 = root.val + 0 if root.left is None else self.rob(root.left.left) + self.rob(root.left.right) \
-        #                                     + 0 if root.right is None else self.rob(root.right.left) + self.rob(root.right.right)
-        # relt = max(dp0, dp1)
-        # return relt
+        if root is None:
+            return 0
+        # 不抢
+        dp0 = self.rob(root.left) + self.rob(root.right)
+        # 抢
+        dp1 = root.val + (0 if root.left is None else self.rob(root.left.left) + self.rob(root.left.right)) \
+              + (0 if root.right is None else self.rob(root.right.left) + self.rob(root.right.right))
+        relt = max(dp0, dp1)
+        return relt
 
-        def base(root):
-            if root is None:
-                return 0, 0
-            left_dp = base(root.left)
-            right_dp = base(root.right)
-            rob_it = root.val + left_dp[0] + right_dp[0]
-            # not_rob的解释：
-            # 根节点不偷时左子树能带来的最大收益（左子树可偷可不偷）
-            # 根节点不偷时右子树能带来的最大收益（右子树可偷可不偷）
-            return max(left_dp[0], left_dp[1]) + max(right_dp[0], right_dp[1]), rob_it
-        return max(base(root)[0], base(root)[1])
+        # def base(root):
+        #     if root is None:
+        #         return 0, 0
+        #     left_dp = base(root.left)
+        #     right_dp = base(root.right)
+        #     rob_it = root.val + left_dp[0] + right_dp[0]
+        #     # not_rob的解释：
+        #     # 根节点不偷时左子树能带来的最大收益（左子树可偷可不偷）
+        #     # 根节点不偷时右子树能带来的最大收益（右子树可偷可不偷）
+        #     return max(left_dp[0], left_dp[1]) + max(right_dp[0], right_dp[1]), rob_it
+        # return max(base(root)[0], base(root)[1])
 
 
 if __name__ == '__main__':
@@ -151,5 +150,7 @@ if __name__ == '__main__':
     # solution = Solution2()
     # print(solution.rob([200, 3, 140, 20, 10]))
     solution = Solution3()
-    root = TreeNode(2, TreeNode(1, None, TreeNode(4)), TreeNode(3))
+    # root = TreeNode(2, TreeNode(1, None, TreeNode(4)), TreeNode(3))
+    # badcase: root = [3,2,3,null,3,null,1]
+    root = TreeNode(3, TreeNode(2, None, TreeNode(3)), TreeNode(3, None, TreeNode(1)))
     print(solution.rob(root))
