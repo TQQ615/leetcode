@@ -81,11 +81,8 @@ class Solution2:
         return True
 
 
-
-
-
 if __name__ == '__main__':
     solution = Solution()
     print(solution.generateParenthesis(3))
     solution = Solution2()
-    print(solution.isValid(s = "()[]{}"))
+    print(solution.isValid(s="()[]{}"))
