@@ -25,6 +25,22 @@ class Solution:
         head.next = None
         return reversed_head
 
+    # 非递归
+    def reverseList2(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        p = head
+        reversed_head = head
+        q = head
+        while p is not None:
+            p = p.next
+            q.next = reversed_head
+            reversed_head = q
+            q = p
+        head.next = None
+
+        return reversed_head
+
 """
 反转链表前 N 个节点
 
@@ -84,11 +100,11 @@ class Solution3:
 
 
 if __name__ == '__main__':
-    solution = Solution2()
+    solution = Solution()
     head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
-    # hh = solution.reverseList(head)
+    hh = solution.reverseList2(head)
     # hh = solution.reverseN2(head, 2)
-    hh = solution.reverseBetween(head, 2, 4)
+    # hh = solution.reverseBetween(head, 2, 4)
     pp = hh
     while pp is not None:
         print(pp.val)
