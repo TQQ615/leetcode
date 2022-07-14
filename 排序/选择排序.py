@@ -9,3 +9,5 @@ def selectionSort(arr):
 
 
 print(selectionSort([5,1,7,5,1,0,8,9]))
+
+# O(n^2) 不稳定

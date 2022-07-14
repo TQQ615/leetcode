@@ -21,3 +21,5 @@ def mergeSort(arr):
 
 
 print(mergeSort([5,1,7,5,1,0,8,9]))
+
+# O(nlogn)，稳定
