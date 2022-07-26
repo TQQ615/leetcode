@@ -79,6 +79,37 @@ class Solution4(object):
         return curr
 
 
+"""
+快速幂解法：复杂度O(logN)
+"""
+
+
+def f(n):
+    matrix = [[1,1],[1,0]]
+
+    def mul_matrx(m1, m2):
+        m = len(m1)
+        mm = [[0 for _ in range(m)] for _ in range(m)]
+        for i in range(m):
+            for j in range(m):
+                for k in range(m):
+                    mm[i][j] += m1[i][k] * m2[k][j]
+        return mm
+
+    def traceback(n):
+        if n == 1:
+            return matrix
+        if n > 1 and n % 2 == 0:
+            return mul_matrx(traceback(n // 2), traceback(n // 2))
+        if n > 1 and n % 2 == 1:
+            return mul_matrx(traceback(n - 1), traceback(1))
+
+    relt = traceback(n - 2)
+    print(relt)
+    return sum(relt[0])
+
+
 if __name__ == '__main__':
     solution = Solution4()
-    print(solution.fib(5))
+    print(solution.fib(8))
+    print(f(8))
