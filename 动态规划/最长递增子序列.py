@@ -24,6 +24,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        # dp[i]状态矩阵：表示nums[:i + 1]中 以 第i个元素 结尾的 最长递增子序列的长度
         dp = [1] * len(nums)
         for i in range(len(nums)):
             for j in range(i):
