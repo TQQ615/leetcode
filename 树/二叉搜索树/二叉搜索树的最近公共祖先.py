@@ -42,7 +42,7 @@ class Solution:
 
             if root.val < min_val:
                 return lca(root.right)
-
+            # min_val <= root.val <= max_val时就是最近公共祖先
             return root
 
         return lca(root)
